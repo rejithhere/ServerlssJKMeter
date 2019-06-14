@@ -40,8 +40,10 @@ RUN PluginsManagerCMD.sh install-all-except jpgc-hadoop,jpgc-oauth \
   && sleep 2 \
   && PluginsManagerCMD.sh status
 
-RUN chmod -R 775 /opt/jmeter/
+COPY entrypoint.sh /opt/jmeter/ 
+RUN chmod -R 7775 /opt/jmeter/ 
 
 WORKDIR /logs
 
 EXPOSE 1099 50000 51000 4445/udp
+ENTRYPOINT [ "/opt/jmeter/entrypoint.sh"]
