@@ -1,5 +1,4 @@
 FROM amazonlinux:2018.03
-MAINTAINER Rejith Ravindran
 
 ENV JMETER_VERSION apache-jmeter-4.0
 ENV JMETER_HOME /opt/$JMETER_VERSION
@@ -41,12 +40,8 @@ RUN PluginsManagerCMD.sh install-all-except jpgc-hadoop,jpgc-oauth \
   && sleep 2 \
   && PluginsManagerCMD.sh status
 
-COPY myproject.jmx /tests/$TEST_DIR/
-COPY entrypoint.sh /opt/jmeter/
 RUN chmod -R 775 /opt/jmeter/
 
 WORKDIR /logs
 
 EXPOSE 1099 50000 51000 4445/udp
-
-ENTRYPOINT ["/opt/jmeter/entrypoint.sh"]
