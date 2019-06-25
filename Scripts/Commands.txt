@@ -1,0 +1,7 @@
+
+
+docker run -it jkm1 jkm1  
+
+docker run -v "$(pwd)/results:/tmp/" -it jkm1 jkm1  
+
+docker run -v "$(pwd)/results:/tmp/" -v "$(pwd)/jmx:/opt/jmeter/jmx/ServerlssJKMeter/Dockerfiles/" -it jkm1 jkm1  

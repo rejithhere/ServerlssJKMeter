@@ -1,8 +1,4 @@
 #!/bin/bash
-# Inspired from https://github.com/hhcordero/docker-jmeter-client
-# Basically runs jmeter, assuming the PATH is set to point to JMeter bin-dir (see Dockerfile)
-#
-# This script expects the standdard JMeter command parameters.
 #
 set -e
 freeMem=`awk '/MemFree/ { print int($2/1024) }' /proc/meminfo`
@@ -15,14 +11,17 @@ echo "START Running Jmeter on `date`"
 echo "JVM_ARGS=${JVM_ARGS}"
 echo "jmeter args=$@"
 
-exec mkdir /tests/
-exec mkdir /tests/${TEST_DIR}/
-exec cp ${TEST_PLAN}.jmx /tests/${TEST_DIR}/
+#git clone https://github.com/rejithhere/ServerlssJKMeter.git
+#cd ServerlssJKMeter/Dockerfiles
+
 # Keep entrypoint simple: we must pass the standard JMeter arguments
 jmeter -n \
-    -t "/tests/${TEST_DIR}/${TEST_PLAN}.jmx" \
-    -l "/tests/${TEST_DIR}/${TEST_PLAN}.jtl"
+    -t "/opt/jmeter/jmx/ServerlssJKMeter/Dockerfiles/myproject.jmx" \
+    -l "/tmp/myprj.jtl"
+
 #exec tail -f jmeter.log
 #    -D "java.rmi.server.hostname=${IP}" \
 #    -D "client.rmi.localport=${RMI_PORT}" \
 #  -R $REMOTE_HOSTS
+
+

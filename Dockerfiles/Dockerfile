@@ -6,14 +6,12 @@ ENV PATH $PATH:$JMETER_HOME/bin
 ENV CMDRUNNER_VERSION 2.2
 ENV PLUGINMGR_VERSION 1.3
 
-ENV TEST_DIR sportsbet
-ENV TEST_PLAN myproject
-
 RUN yum update -y && yum install -y \
 sudo \ 
 java-1.8.0-openjdk \
 unzip \
 wget \
+git \
 && yum clean all
 
 # overridable environment variables
@@ -43,7 +41,7 @@ RUN PluginsManagerCMD.sh install-all-except jpgc-hadoop,jpgc-oauth \
 COPY entrypoint.sh /opt/jmeter/ 
 RUN chmod -R 7775 /opt/jmeter/ 
 
-WORKDIR /logs
+WORKDIR /opt/jmeter/jmx
 
 EXPOSE 1099 50000 51000 4445/udp
 ENTRYPOINT [ "/opt/jmeter/entrypoint.sh"]
