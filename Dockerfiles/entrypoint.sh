@@ -16,7 +16,7 @@ echo "jmeter args=$@"
 
 # Keep entrypoint simple: we must pass the standard JMeter arguments
 jmeter -n \
-    -t "/opt/jmeter/jmx/ServerlssJKMeter/Dockerfiles/myproject.jmx" \
+    -t "/opt/jmeter/jmx/myproject.jmx" \
     -l "/tmp/myprj.jtl"
 
 #exec tail -f jmeter.log
